@@ -9,7 +9,7 @@
 
 # define MAXINT 2147483647
 
-typedef pthread_mutex_t	t_mutex;
+typedef pthread_mutex_t	t_fork;
 
 typedef enum e_state
 {
@@ -62,7 +62,7 @@ typedef struct s_philo
 typedef struct s_init
 {
 	t_data	data;
-	t_mutex	*forks;
+	t_fork	*forks;
 	t_philo	*philos;
 }	t_init;
 
@@ -103,7 +103,7 @@ void	update_last_meal(t_philo *philo);
 void	*actions(void *ptr);
 
 //EXIT
-void	finish_process(int n, t_data *data, t_mutex *forks, t_philo *philos);
+void	finish_process(int n, t_data *data, t_fork *forks, t_philo *philos);
 
 //FORKS
 void	lock_forks(t_philo *philo);

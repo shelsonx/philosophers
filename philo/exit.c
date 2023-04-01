@@ -1,6 +1,6 @@
 #include "philo.h"
 
-static void	free_structs(t_data *data, t_mutex *forks, t_philo *philos)
+static void	free_structs(t_data *data, t_fork *forks, t_philo *philos)
 {
 	free(data->lock_info);
 	free(data->lock_is_live);
@@ -31,7 +31,7 @@ static void	destroy_others_locks(t_data *data)
 		pthread_mutex_destroy(data->lock_is_live);
 }
 
-void	finish_process(int n, t_data *data, t_mutex *forks, t_philo *philos)
+void	finish_process(int n, t_data *data, t_fork *forks, t_philo *philos)
 {
 	int	i;
 
