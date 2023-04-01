@@ -3,8 +3,10 @@
 static void	*is_only_one(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_right);
+	pthread_mutex_lock(philo->data->lock_state);
 	philo->state = TAKEN_A_FORK;
 	state_info(philo);
+	pthread_mutex_unlock(philo->data->lock_state);
 	pthread_mutex_unlock(philo->fork_right);
 	return (NULL);
 }

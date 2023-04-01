@@ -24,10 +24,12 @@ static void	init_data(t_data *data, pthread_mutex_t *forks, t_philo *philos)
 	data->times->start_time = 0;
 	data->lock_info = malloc(sizeof(t_fork));
 	data->lock_is_live = malloc(sizeof(t_fork));
+	data->lock_state = malloc(sizeof(t_fork));
 	if (data->lock_info == NULL || data->lock_is_live == NULL)
 		finish_process(0, data, forks, philos);
 	pthread_mutex_init(data->lock_info, NULL);
 	pthread_mutex_init(data->lock_is_live, NULL);
+	pthread_mutex_init(data->lock_state, NULL);
 }
 
 static void	init_forks(int n, t_data *data, t_fork **forks, t_philo **philos)

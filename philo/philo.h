@@ -43,6 +43,7 @@ typedef struct s_data
 	t_times			*times;
 	pthread_mutex_t	*lock_info;
 	pthread_mutex_t	*lock_is_live;
+	pthread_mutex_t	*lock_state;
 }	t_data;
 
 typedef struct s_philo
@@ -81,7 +82,7 @@ void	state_info(t_philo *philo);
 //UTILS
 void	validate_args(int argc, char **argv);
 int		is_alive(t_philo *philo);
-void	to_kill(t_philo *philo);
+int		to_kill(t_philo *philo);
 
 // TIMES
 void	mssleep(size_t ms_time);

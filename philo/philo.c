@@ -47,12 +47,7 @@ static int	any_philo_die(t_philo *philos)
 	while (++i < philos->data->number_of_philos)
 	{
 		if (timeout(&philos[i]))
-		{
-			to_kill(&philos[i]);
-			philos[i].state = DIED;
-			state_info(&philos[i]);
-			return (TRUE);
-		}
+			return (to_kill(&philos[i]));
 		mssleep(1);
 	}
 	return (FALSE);
