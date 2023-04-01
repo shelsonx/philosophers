@@ -1,6 +1,6 @@
 #include "philo.h"
 
-void	validate_args(int argc, char **argv)
+static int	is_valid_number(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -11,15 +11,22 @@ void	validate_args(int argc, char **argv)
 		j = -1;
 		while (argv[i][++j])
 		{
-			if (!ft_isdigit(argv[i][j]) || 
-				ft_atoi(argv[i]) > MAXINT || 
+			if (!ft_isdigit(argv[i][j]) ||
+				ft_atoi(argv[i]) > MAXINT ||
 				ft_atoi(argv[i]) <= 0)
 			{
 				printf("Error!\n");
-				exit (EXIT_FAILURE);
+				return (FALSE);
 			}
 		}
 	}
+	return (TRUE);
+}
+
+void	validate_args(int argc, char **argv)
+{
+	if (!is_valid_number(argc, argv))
+		exit(EXIT_FAILURE);
 	if (argc > 6)
 		printf("Too many args!\n");
 	else if (argc < 5)
@@ -46,18 +53,4 @@ void	to_kill(t_philo *philo)
 	pthread_mutex_lock(philo->data->lock_is_live);
 	philo->data->is_alive = FALSE;
 	pthread_mutex_unlock(philo->data->lock_is_live);
-}
-
-int max(int a, int b)
-{
-    if (a > b)
-        return a;
-    return b;
-}
-
-int min(int a, int b)
-{
-    if (a < b)
-        return a;
-    return b;
 }
