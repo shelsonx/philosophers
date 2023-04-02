@@ -46,9 +46,8 @@ static int	any_philo_die(t_philo *philos)
 	i = -1;
 	while (++i < philos->data->number_of_philos)
 	{
-		if (timeout(&philos[i]))
+		if (timeout(philos, i))
 			return (to_kill(&philos[i]));
-		usleep(3000);
 	}
 	return (FALSE);
 }
@@ -62,6 +61,7 @@ void	*manager(void *arg)
 	{
 		if (any_philo_die(philos))
 			return (NULL);
+		mssleep(1);
 	}
 	return (NULL);
 }

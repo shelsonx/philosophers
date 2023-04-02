@@ -88,7 +88,7 @@ int		to_kill(t_philo *philo);
 void	mssleep(size_t ms_time);
 size_t	get_time(void);
 size_t	get_time_now(size_t start_time);
-int		timeout(t_philo *philo);
+int		timeout(t_philo *philos, int i);
 
 //PHILO
 int		start_process(int n, t_philo *philos);

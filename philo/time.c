@@ -22,14 +22,14 @@ void	mssleep(size_t ms_time)
 		usleep(100);
 }
 
-int	timeout(t_philo *philo)
+int	timeout(t_philo *philos, int i)
 {
 	size_t	current_time;
 	size_t	last_meal;
 	size_t	time_to_die;
 
-	current_time = get_time_now(philo->data->times->start_time);
-	last_meal = get_last_meal(philo);
-	time_to_die = (size_t) philo->data->times->to_die;
+	current_time = get_time_now(philos->data->times->start_time);
+	last_meal = get_last_meal(&philos[i]);
+	time_to_die = (size_t) philos->data->times->to_die;
 	return ((current_time - last_meal) > time_to_die);
 }
