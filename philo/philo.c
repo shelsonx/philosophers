@@ -48,7 +48,7 @@ static int	any_philo_die(t_philo *philos)
 	{
 		if (timeout(&philos[i]))
 			return (to_kill(&philos[i]));
-		mssleep(1);
+		usleep(3000);
 	}
 	return (FALSE);
 }

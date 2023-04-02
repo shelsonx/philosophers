@@ -26,7 +26,6 @@ static void	to_think(t_philo *philo)
 		return ;
 	philo->state = THINKING;
 	state_info(philo);
-	usleep(500);
 }
 
 static int	start_dinner(t_philo *philo)
