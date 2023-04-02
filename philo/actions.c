@@ -2,12 +2,14 @@
 
 static void	*is_only_one(t_philo *philo)
 {
-	pthread_mutex_lock(philo->fork_right);
+	pthread_mutex_lock(philo->fork_left);
 	pthread_mutex_lock(philo->lock_state);
 	philo->state = TAKEN_A_FORK;
-	pthread_mutex_unlock(philo->lock_state);
 	state_info(philo);
-	pthread_mutex_unlock(philo->fork_right);
+	philo->state = DIED;
+	state_info(philo);
+	pthread_mutex_unlock(philo->lock_state);
+	pthread_mutex_unlock(philo->fork_left);
 	return (NULL);
 }
 
