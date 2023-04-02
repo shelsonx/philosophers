@@ -50,10 +50,10 @@ int	is_alive(t_philo *philo)
 
 int	to_kill(t_philo *philo)
 {
-	pthread_mutex_lock(philo->data->lock_state);
+	pthread_mutex_lock(philo->lock_state);
 	philo->state = DIED;
 	state_info(philo);
-	pthread_mutex_unlock(philo->data->lock_state);
+	pthread_mutex_unlock(philo->lock_state);
 	pthread_mutex_lock(philo->data->lock_is_live);
 	philo->data->is_alive = FALSE;
 	pthread_mutex_unlock(philo->data->lock_is_live);

@@ -4,7 +4,6 @@ static void	free_structs(t_data *data, t_fork *forks, t_philo *philos)
 {
 	free(data->lock_info);
 	free(data->lock_is_live);
-	free(data->lock_state);
 	free(data->times);
 	free(forks);
 	free(philos);
@@ -14,6 +13,7 @@ static void	free_locks_meals(t_philo *philo)
 {
 	free(philo->lock_last_meal);
 	free(philo->lock_meals);
+	free(philo->lock_state);
 }
 
 static void	destroy_locks_meal(t_philo *philo)
@@ -22,6 +22,8 @@ static void	destroy_locks_meal(t_philo *philo)
 		pthread_mutex_destroy(philo->lock_last_meal);
 	if (philo->lock_meals)
 		pthread_mutex_destroy(philo->lock_meals);
+	if (philo->lock_state)
+		pthread_mutex_destroy(philo->lock_state);
 }
 
 static void	destroy_others_locks(t_data *data)
@@ -30,8 +32,6 @@ static void	destroy_others_locks(t_data *data)
 		pthread_mutex_destroy(data->lock_info);
 	if (data->lock_is_live)
 		pthread_mutex_destroy(data->lock_is_live);
-	if (data->lock_state)
-		pthread_mutex_destroy(data->lock_state);
 }
 
 void	finish_process(int n, t_data *data, t_fork *forks, t_philo *philos)

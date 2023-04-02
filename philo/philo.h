@@ -43,7 +43,6 @@ typedef struct s_data
 	t_times			*times;
 	pthread_mutex_t	*lock_info;
 	pthread_mutex_t	*lock_is_live;
-	pthread_mutex_t	*lock_state;
 }	t_data;
 
 typedef struct s_philo
@@ -57,6 +56,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_right;
 	pthread_mutex_t	*lock_last_meal;
 	pthread_mutex_t	*lock_meals;
+	pthread_mutex_t	*lock_state;
 	t_data			*data;
 }	t_philo;
 

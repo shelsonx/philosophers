@@ -3,10 +3,10 @@
 static void	*is_only_one(t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork_right);
-	pthread_mutex_lock(philo->data->lock_state);
+	pthread_mutex_lock(philo->lock_state);
 	philo->state = TAKEN_A_FORK;
+	pthread_mutex_unlock(philo->lock_state);
 	state_info(philo);
-	pthread_mutex_unlock(philo->data->lock_state);
 	pthread_mutex_unlock(philo->fork_right);
 	return (NULL);
 }
@@ -15,7 +15,9 @@ static void	to_sleep(t_philo *philo)
 {
 	if (!is_alive(philo))
 		return ;
+	pthread_mutex_lock(philo->lock_state);
 	philo->state = SLEEPING;
+	pthread_mutex_unlock(philo->lock_state);
 	state_info(philo);
 	mssleep(philo->data->times->to_sleep);
 }
@@ -24,7 +26,9 @@ static void	to_think(t_philo *philo)
 {
 	if (!is_alive(philo))
 		return ;
+	pthread_mutex_lock(philo->lock_state);
 	philo->state = THINKING;
+	pthread_mutex_unlock(philo->lock_state);
 	state_info(philo);
 }
 

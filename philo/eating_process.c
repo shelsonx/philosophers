@@ -2,10 +2,14 @@
 
 static void	to_eat(t_philo *philo)
 {
+	pthread_mutex_lock(philo->lock_state);
 	philo->state = TAKEN_A_FORK;
+	pthread_mutex_unlock(philo->lock_state);
 	state_info(philo);
 	state_info(philo);
+	pthread_mutex_lock(philo->lock_state);
 	philo->state = EATING;
+	pthread_mutex_unlock(philo->lock_state);
 	state_info(philo);
 }
 
@@ -22,7 +26,7 @@ void	eating_process(t_philo *philo)
 		return (stop_eating(philo));
 	to_eat(philo);
 	update_last_meal(philo);
-	update_meals(philo);
 	mssleep(philo->data->times->to_eat);
 	unlock_forks(philo);
+	update_meals(philo);
 }
