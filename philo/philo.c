@@ -61,7 +61,7 @@ void	*manager(void *arg)
 	{
 		if (any_philo_die(philos))
 			return (NULL);
-		usleep(3000);
+		usleep(100);
 	}
 	return (NULL);
 }
