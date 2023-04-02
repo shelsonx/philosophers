@@ -50,6 +50,8 @@ int	is_alive(t_philo *philo)
 
 int	to_kill(t_philo *philo)
 {
+	if (philo->data->is_only_one)
+		return (TRUE);
 	pthread_mutex_lock(philo->lock_state);
 	philo->state = DIED;
 	state_info(philo);
