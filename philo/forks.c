@@ -8,6 +8,6 @@ void	unlock_forks(t_philo *philo)
 
 void	lock_forks(t_philo *philo)
 {
-	pthread_mutex_lock(philo->fork_right);
 	pthread_mutex_lock(philo->fork_left);
+	pthread_mutex_lock(philo->fork_right);
 }
